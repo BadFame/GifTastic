@@ -22,13 +22,17 @@ $( document ).ready(function() {
 				 		var path = "https://api.giphy.com/v1/gifs/search?";
 				 		var src = path + "api_key" + apiKey + "&q=" + encButtonValue + "";
 
-						var xhr = $.ajax({	url: src, 
-											async: true, 
-											method: 'GET',
-											headers: {
-												'Access-Control-Allow-Origin': '*'
-											},
-											success: function(data){
+				 		$.ajax({
+			 				url: src,
+			 				data: {
+			 					format: 'json'
+			 				},
+			 				error: function(){
+			 					alert("Error Occured retrieving data")
+			 				},
+			 				dataType: 'json',
+			 				success: function(data){
+			 								//IMPORTANT
 											for (var i = 0; i < data.data.length; i++){
 												 $('#grid').prepend("<img class='img-thumbnail img-responsive' src='" + data.data[i].images.fixed_height_still.url + "' />");
 												}
@@ -47,7 +51,10 @@ $( document ).ready(function() {
 											    		console.log($(this).attr("src"));
 											    	}
 												});
-										}});
+											//IMPORTANT
+			 				},
+			 				type: 'GET'
+				 		});
 
 
 	 		});
