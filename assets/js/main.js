@@ -34,7 +34,7 @@ $(".queryButton").click(function(){
 function getGiphy(e){
 	var buttonVal = $(e).val();
 	var encVal = encodeURIComponent(buttonVal);
-	var xhr = $.get("http://api.giphy.com/v1/gifs/search?api_key=jEqdCGWOY7yfKVXlHz4wmLGW4OdlMl6C&q=" + encVal);
+	var xhr = $.get("https://api.giphy.com/v1/gifs/search?api_key=jEqdCGWOY7yfKVXlHz4wmLGW4OdlMl6C&q=" + encVal);
 	xhr.done(function(data) {
 
 		for (var i = 0; i < data.data.length; i++){
