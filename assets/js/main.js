@@ -22,33 +22,30 @@ $( document ).ready(function() {
 				 		var path = "https://api.giphy.com/v1/gifs/search?";
 				 		var src = path + "api_key" + apiKey + "&q=" + encButtonValue + "";
 
-				 		$.getJSON(src, gotData);
+						var xhr = $.get(src);
+							xhr.done(function(data) {
 
-				 		function gotData(data){
-			 				//IMPORTANT
-							for (var i = 0; i < data.data.length; i++){
+								for (var i = 0; i < data.data.length; i++){
 								 $('#grid').prepend("<img class='img-thumbnail img-responsive' src='" + data.data[i].images.fixed_height_still.url + "' />");
 								}
 
-							var toggle = false;
-							var enable = $('img').click(function(){
-					    			var src = $(this).attr("src");
+								var toggle = false;
+								var enable = $('img').click(function(){
+							    	var src = $(this).attr("src");
 
-							    	if(src.indexOf("200_s.gif") > 1){
-							    		$(this).attr("src", src.replace(/200_s.gif/i, "200.gif"));
-							    		console.log($(this).attr("src"));
-							    	}
-							    	else{
-							    		$(this).attr("src", src.replace(/200.gif/i, "200_s.gif"));
-							    		toggle = true;
-							    		console.log($(this).attr("src"));
-							    	}
-								});
-							//IMPORTANT
-						}
+								    	if(src.indexOf("200_s.gif") > 1){
+								    		$(this).attr("src", src.replace(/200_s.gif/i, "200.gif"));
+								    		console.log($(this).attr("src"));
+								    	}
+								    	else{
+								    		$(this).attr("src", src.replace(/200.gif/i, "200_s.gif"));
+								    		toggle = true;
+								    		console.log($(this).attr("src"));
+								    	}
+									});
 
-			});
-
+					    	});
+			 		});
 	}
 	function cleanInput (){
 		$("#textQuery").val("");
