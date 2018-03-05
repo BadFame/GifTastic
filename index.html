@@ -20,12 +20,38 @@
 				      <input id="textQuery" class="form-control mr-sm-2" type="text" placeholder="Add A Topic" name="query">
 
 				      <button id="add" class="btn btn-outline-primary my-2 my-sm-0">Add</button>
+				      <button id="clear" class="btn btn-outline-primary my-2 my-sm-0">Clear</button>
 			    </form>
 			</nav>
 		</div>
 		<div class="container container-fluid">
 		<div class="row">
 			<div id="grid" class="col-sm-12"></div>
+		</div>
+		<div class="modal" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">GifTastic</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <p>This is a small app to present multiple Gif images of a topic.</p>
+			        <p>I selected some characters of Dragon Ball, try anything. This is rated for everyone. (G)</p>
+			        <button id="add" class="btn btn-outline-primary my-2 my-sm-0">Add</button><p class="text-right" style="float:right;">This Button will add your topics.</p>
+			        <p style="clear:right">Once you have added a Topic and clicked on its button GIFS will appear.</p>
+			        <p>Tap on any and they will animate. Tap again and they will stop.</p>
+				    <button id="clear" class="btn btn-outline-primary my-2 my-sm-0">Clear</button><p class="text-right" style="float:right;">This Button will clear all topics.</p>
+			      </div>
+			      <div class="modal-footer">
+			      	<p class="modal-title">Enjoy!</p>
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script src="assets/js/main.js"></script>

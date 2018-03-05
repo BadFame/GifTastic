@@ -1,3 +1,6 @@
+// A $( document ).ready() block.
+$('.modal').modal('show');
+
 //'Global Variables'
 var button,
 	buttonVal,
@@ -37,29 +40,17 @@ var button,
 						}
 							   ]	
 		  		  };
-	//'Creates and appends Initial buttons menu'	  		  
-	initButtonExec =  function (butons){
-							for (var i = 0; i < butons.buttons.length; i++){
-							//'prepends an image per iteration'
-							initButtonObj = $('<button></button>', {
-											class: butons.buttons[i].class,
-											type: butons.buttons[i].type,
-											text: butons.buttons[i].textVal,
-											value: butons.buttons[i].textVal, 
-											onclick: butons.buttons[i].onClick
-										});
-									//'appends the buttons to the buttons DIV'
-							$('#buttons').append(initButtonObj);
-		 
-							}
 
-						};
-	//'Executes initial buttons'
-	initButtonExec(initButtonsMeta);
-
+//FORM CONTROLS
+//*************
 //Prevents the default functionality of the form so it doesn't submit to itself. 
 $("form").submit(function(e){
 	e.preventDefault(e);
+});
+
+//User Removes all Buttons
+$("#clear").on('click',function(){
+	$('.queryButton').remove();
 });
 
 //handles the click on the add button or enter.
@@ -75,10 +66,18 @@ $(".queryButton").click(function(){
 	getGiphy(this);
 });
 
+//HELPERS
+//***************
 //'remove alerts'
 $('#textQuery').on('input',function(e){
     $('#alert').removeClass("alert alert-danger").text('');
 });
+
+//Cleans the Input Text
+function cleanInput (){
+	$("#textQuery").val("");
+}
+
 
 //helper function to build a button. It gets the value of the button as an argument. 
 function buildButton (value){
@@ -99,11 +98,28 @@ function buildButton (value){
 		};
 }
 
-//Cleans the Input Text
-function cleanInput (){
-	$("#textQuery").val("");
-}
+//'Creates and appends Initial buttons menu'	  		  
+	initButtonExec =  function (butons){
+							for (var i = 0; i < butons.buttons.length; i++){
+							//'prepends an image per iteration'
+							initButtonObj = $('<button></button>', {
+											class: butons.buttons[i].class,
+											type: butons.buttons[i].type,
+											text: butons.buttons[i].textVal,
+											value: butons.buttons[i].textVal, 
+											onclick: butons.buttons[i].onClick
+										});
+									//'appends the buttons to the buttons DIV'
+							$('#buttons').append(initButtonObj);
+		 
+							}
 
+						};
+	//'Executes initial buttons'
+	initButtonExec(initButtonsMeta);
+
+//API CALL to Giphy
+//*****************
 //calls Giphy API, creates image thumbnails and prepends it to the Grid Div tag.
 function getGiphy(e){
 	buttonVal = $(e).val();
