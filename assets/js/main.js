@@ -51,6 +51,7 @@ $("form").submit(function(e){
 //User Removes all Buttons
 $("#clear").on('click',function(){
 	$('.queryButton').remove();
+	$('.img-thumbnail').remove();
 });
 
 //handles the click on the add button or enter.
