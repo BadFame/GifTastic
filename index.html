@@ -11,15 +11,12 @@
 	</head>
 	<body>
 		<div class="container">
-			<nav class="navbar navbar-light bg-faded">
+			<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
 				  <form id="buttons" class="form-inline">
-				    
-				    <button class="btn btn-outline-primary queryButton" onclick="getGiphy(this);" type="button" value="Goku">Goku</button>
-				    <button class="btn btn-outline-primary" type="button" value="Freezer" onclick="getGiphy(this);">Freezer</button>
-				    <button class="btn btn-outline-primary" type="button" value="Chichi" onclick="getGiphy(this);">Chichi</button>
-				    <button class="btn btn-outline-primary" type="button" value="Beerus" onclick="getGiphy(this);">Beerus</button>
 				  </form>
 				  <form class="form-inline my-2 my-lg-0">
+				  		  <div id="alert" class="">
+						  </div>
 				      <input id="textQuery" class="form-control mr-sm-2" type="text" placeholder="Add A Topic" name="query">
 
 				      <button id="add" class="btn btn-outline-primary my-2 my-sm-0">Add</button>

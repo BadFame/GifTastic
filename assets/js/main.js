@@ -4,7 +4,58 @@ var button,
 	encVal,
 	xhr,
 	enable,
-	src;
+	src,
+	initButtonExec,
+	initButtonsMeta,
+	initButtonObj;
+
+	initButtonsMeta = {
+					"buttons": [
+						{
+							"textVal": "Trunks",
+							"class": "btn btn-outline-primary queryButton",
+							"type": "'button'",
+							"onClick": "getGiphy(this);"
+						},
+		   				{	
+		   					"textVal": "Vegeta",
+							"class": "btn btn-outline-primary queryButton",
+							"type": "button",
+							"onClick": "getGiphy(this);"
+						},
+					   	{				
+					   		"textVal": "Goku",
+							"class": "btn btn-outline-primary queryButton",
+							"type": "button",
+							"onClick": "getGiphy(this);"
+						},
+		   				{	
+		   					"textVal": "Broly",
+							"class": "btn btn-outline-primary queryButton",
+							"type": "button",
+							"onClick": "getGiphy(this);"
+						}
+							   ]	
+		  		  };
+	//'Creates and appends Initial buttons menu'	  		  
+	initButtonExec =  function (butons){
+							for (var i = 0; i < butons.buttons.length; i++){
+							//'prepends an image per iteration'
+							initButtonObj = $('<button></button>', {
+											class: butons.buttons[i].class,
+											type: butons.buttons[i].type,
+											text: butons.buttons[i].textVal,
+											value: butons.buttons[i].textVal, 
+											onclick: butons.buttons[i].onClick
+										});
+									//'appends the buttons to the buttons DIV'
+							$('#buttons').append(initButtonObj);
+		 
+							}
+
+						};
+	//'Executes initial buttons'
+	initButtonExec(initButtonsMeta);
 
 //Prevents the default functionality of the form so it doesn't submit to itself. 
 $("form").submit(function(e){
@@ -24,17 +75,28 @@ $(".queryButton").click(function(){
 	getGiphy(this);
 });
 
+//'remove alerts'
+$('#textQuery').on('input',function(e){
+    $('#alert').removeClass("alert alert-danger").text('');
+});
+
 //helper function to build a button. It gets the value of the button as an argument. 
 function buildButton (value){
 		button = $('<button></button>', {
 						class: 'btn btn-outline-primary queryButton',
 						type: 'button',
 						text: value,
-						value: value, 
+						value: value,
+						id: value, 
 						onclick: 'getGiphy(this);'
 						});
 		//'appends the buttons to the buttons DIV'
-		$('#buttons').append(button);
+		if(value !== ""){
+			$('#buttons').append(button);
+		}
+		else{
+				$('#alert').addClass("alert alert-danger").text('We cannot accept an empty Giphy!'); 
+		};
 }
 
 //Cleans the Input Text
@@ -52,6 +114,12 @@ function getGiphy(e){
 		for (var i = 0; i < data.data.length; i++){
 		//'prepends an image per iteration'
 		 $('#grid').prepend("<img class='img-thumbnail img-responsive img-rounded' src='" + data.data[i].images.fixed_height_still.url + "' />");
+		}
+		//'If no Giphy query found: Show an Alert, Remove Button'
+		if(data.pagination.count == 0){
+			$('#alert').addClass("alert alert-danger").text('Sorry, we do not have Giphys for that!'); 
+			buttonToDelete = document.getElementById(buttonVal);
+			$(buttonToDelete).remove();
 		}
 		//'handles the play/stop gif on all images prepended.'
 		enable = $('img').click(function(){
